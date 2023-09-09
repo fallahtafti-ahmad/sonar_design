@@ -1,5 +1,4 @@
 pyglet<2
-tkinter
 customtkinter
 trimesh
 pillow
