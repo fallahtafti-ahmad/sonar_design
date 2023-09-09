@@ -1,0 +1,6 @@
+pyglet<2
+tkinter
+customtkinter
+trimesh
+pillow
+pyfds==0.2.0
