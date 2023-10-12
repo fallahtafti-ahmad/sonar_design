@@ -51,13 +51,15 @@ def view_3d():
         pf=centerl-(int(m/2)-1)*pdis
     for i in range(m):
         geom = trimesh.creation.cylinder(rode_d*dl,rode_l*dh)
+        geom.visual.face_colors=[255,255,0,255]
         geom.apply_translation((box[0,0],pf,centerd))
         sc.add_geometry(geom)
         geom = trimesh.creation.cylinder(rode_d*dl,rode_l*dh)
+        geom.visual.face_colors=[255,255,0,255]
         geom.apply_translation((box[1,0],pf,centerd))
         sc.add_geometry(geom)
         pf+=pdis
-    sc.show(start_loop=True,callback=rotate,callback_period=0.05)
+    sc.show(start_loop=True,callback=rotate,callback_period=0.05,resolution=(800,600))
 def view_3di():
     L=float(l.get())
     H=float(h.get())
@@ -80,13 +82,15 @@ def view_3di():
         pf=centerl-(int(m/2)-1)*pdis
     for i in range(m):
         geom = trimesh.creation.cylinder(rode_d*dl,rode_l*dh)
+        geom.visual.face_colors=[255,255,0,255]
         geom.apply_translation((box[0,0],pf,centerd))
         sc.add_geometry(geom)
         geom = trimesh.creation.cylinder(rode_d*dl,rode_l*dh)
+        geom.visual.face_colors=[255,255,0,255]
         geom.apply_translation((box[1,0],pf,centerd))
         sc.add_geometry(geom)
         pf+=pdis
-    sc.show()
+    sc.show(resolution=(800,600))
     
 def draw_beam():
     angles, beampattern = beam_pattern(int(velocity.get()),int(M.get()),int(testf.get()),int(dis.get())/100)
