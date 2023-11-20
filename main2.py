@@ -29,6 +29,13 @@ ang=[np.deg2rad(60),np.deg2rad(0),np.deg2rad(0)]
 # light = pyrender.PointLight(color=[1.0, 1.0, 1.0], intensity=2.0)
 # scene.add(mesh)
 # scene.add(light)
+def _normalize_by_maximum(x):
+    max_x = x.max()
+    if max_x > 0:
+        return x / max_x
+    else:
+        return x
+
 def view_3d():
     L=float(l.get())
     H=float(h.get())
@@ -161,9 +168,15 @@ def testing():
         btn2.get_tk_widget().grid(row=0,column=10,columnspan=8,rowspan=8)
         # plt.figure()
         # doaplot.plot_spectrum({'MUSIC': sp}, grid,ground_truth=sources, ax=ax2, use_log_scale=True)#ground_truth=sources
-        ax2.stem(grid,sources)
-        ax2.plot(grid,sp)
+        # print(grid)
+        x_truth = sources.locations*180/np.pi
+        ax2.stem(x_truth,np.ones(x_truth.shape),'--g')
+        y = _normalize_by_maximum(sp)
+        ax2.plot(grid.axes[0]*180/np.pi,y)
         # ax2.set_xlim([-np.pi/2,np.pi/2])
+        ax2.set_xlim(-90,90)
+        ax2.grid()
+        ax2.set_xticks([-90,-45,0,45,90])
         plt.show()
         
 
