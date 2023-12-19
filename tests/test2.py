@@ -14,6 +14,6 @@ slice = trimesh.intersections.slice_mesh_plane(tm,plane_origin=tm.centroid,plane
 sc.add_geometry(slice)
 # png=sc.save_image(resolution=(800,600))
 sc.show(resolution=(800,600))
-sc.export("snap.jpg")
+# sc.export("snap.jpg")
 # image=Image.open(io.BytesIO(png))
 # image.show()
