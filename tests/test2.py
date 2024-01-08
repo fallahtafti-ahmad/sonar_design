@@ -26,20 +26,20 @@ png=sc.save_image(resolution=(800,600))
 image = img.imread(io.BytesIO(png))
 # plt.imshow(image[:,:,0]==1)
 # plt.show()
-print(image==1)
+# print(image==1)
 # image.show()
-
-
+image2 =np.ones((600,900))
+image2[:,50:850] = image[:,:,0]
 """ Lattice Boltzmann Simulation """
 
 # Simulation parameters
 # Nx                     = 400    # resolution x-dir
 # Ny                     = 100    # resolution y-dir
-Ny,Nx,c = image.shape
+Ny,Nx = image2.shape
 rho0                   = 100    # average density
 tau                    = 0.6    # collision timescale
 Nt                     = 4000   # number of timesteps
-plotRealTime = False # switch on for plotting as the simulation goes along
+plotRealTime = True # switch on for plotting as the simulation goes along
 
 # Lattice speeds / weights
 NL = 9
@@ -62,13 +62,13 @@ for i in idxs:
 # Cylinder boundary
 # X, Y = np.meshgrid(range(Nx), range(Ny))
 # cylinder = (X - Nx/4)**2 + (Y - Ny/2)**2 < (Ny/4)**2
-cylinder = image[:,:,0]<1
+cylinder = image2[:,:]<1
 # Prep figure
 fig = plt.figure(figsize=(4,2), dpi=80)
 
 # Simulation Main Loop
 for it in range(Nt):
-    # print(it)
+    print(it)
     
     # Drift
     for i, cx, cy in zip(idxs, cxs, cys):
